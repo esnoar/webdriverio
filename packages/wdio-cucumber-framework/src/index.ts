@@ -89,7 +89,6 @@ class CucumberAdapter {
             names: this._cucumberOpts.names as string[],
             tagExpression: this._cucumberOpts.tagExpression
         })
-
         const reporterOptions = {
             capabilities: this._capabilities,
             ignoreUndefinedDefinitions: Boolean(this._cucumberOpts.ignoreUndefinedDefinitions),
@@ -117,6 +116,7 @@ class CucumberAdapter {
             })
 
             this._hasTests = this._cucumberReporter.eventListener.getPickleIds(this._capabilities).length > 0
+            console.log('has test: ' + this._hasTests)
         } catch (runtimeError) {
             await executeHooksWithArgs('after', this._config.after, [runtimeError, this._capabilities, this._specs])
             throw runtimeError

@@ -430,7 +430,7 @@ export default class CucumberEventListener extends EventEmitter {
      */
     getPickleIds (caps: Capabilities.RemoteCapability) {
         const gherkinDocument = this._gherkinDocEvents[this._gherkinDocEvents.length - 1]
-        return [...this._suiteMap.entries()]
+        let ret =  [...this._suiteMap.entries()]
             /**
              * match based on capability tags
              */
@@ -442,6 +442,7 @@ export default class CucumberEventListener extends EventEmitter {
                 gherkinDocument,
                 pickle: this._scenarios.find(s => s.id === fakeId) as Pickle
             }))
-            .map(([id]) => id)
+        console.log('filtered pickles: \n' + ret)
+        return ret.map(([id]) => id)
     }
 }

@@ -240,7 +240,7 @@ export default class ConfigParser {
                 exclude = ConfigParser.getFilePaths(capExclude, undefined, this._pathService)
             }
         }
-
+        console.log(specs)
         return this.filterSpecs(specs, <string[]>exclude)
     }
 

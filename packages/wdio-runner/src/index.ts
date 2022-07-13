@@ -138,6 +138,7 @@ export default class Runner extends EventEmitter {
         /**
          * run `beforeSession` command before framework and browser are initiated
          */
+        console.log('initialise worker')
         initialiseWorkerService(
             this._config as Options.Testrunner,
             caps as Capabilities.Capabilities,
@@ -151,6 +152,7 @@ export default class Runner extends EventEmitter {
         /**
          * initialise framework
          */
+        console.log('initialise framework')
         this._framework = initialisePlugin(this._config.framework as string, 'framework').default as unknown as TestFramework
         this._framework = await this._framework.init(cid, this._config, specs, caps, this._reporter)
         process.send!({ name: 'testFrameworkInit', content: { cid, caps, specs, hasTests: this._framework.hasTests() } })
